@@ -1,43 +1,43 @@
 # POLICY EVALUATION
 
 ## AIM
-To develop a Python program to evaluate the given policy.
+Deploy the frozen-lake MDP. Find value function for both the policies given using policy evaluation and compare them.
 
 ## PROBLEM STATEMENT
-To find best policy from two policies which are defined by user using policy evaluation function. Where the mdp includes 16 states from 0-15, 0 is the starting state, assigning some 4 random state as holes and 15 is the goal state and then we need to calculate optimal state value function for each state such that we can reach goal using optimal policy using policy evaluation.
+This is an experiment in Reinforcement Learning where you compare different policies in a Frozen-Lake environment using policy evaluation.
 
 ## POLICY EVALUATION FUNCTION
 ```
 def policy_evaluation(pi, P, gamma=1.0, theta=1e-10):
-    V = np.zeros(len(P), dtype=np.float64)
-    while True:
-        delta = 0
-        for s in range(len(P)):
-            v = 0
-            a = pi(s)
-            for prob, next_state, reward, done in P[s][a]:
-                v += prob * (reward + gamma * V[next_state] * (not done))
-            delta = max(delta, abs(v - V[s]))
-            V[s] = v
-        if delta < theta:
-            break
-    return V
+  prev_V=np.zeros(len(P))
+  while True:
+    V=np.zeros(len(P))
+    for s in range(len(P)):
+      for prob, next_state, reward, done in P[s][pi(s)]:
+        V[s]+=prob*(reward+gamma*prev_V[next_state]*(not done))
+
+    if np.max(np.abs(prev_V-V))<theta:
+      break
+    prev_V=V.copy()
+  return V
 ```
 
 ## OUTPUT:
-Mention the first and second  along with its state value function and compare them
-### policies:
-![alt text](output/policy.png)
+# Policy 1
 
-### State value function:
-![alt text](output/state1.png)
-![alt text](output/state2.png)
+<img width="684" height="547" alt="image" src="https://github.com/user-attachments/assets/4d64e8a5-e65f-4b11-a668-4ac3e59af3c7" />
 
-### Compare:
-![alt text](output/compare.png)
+# Policy 2
 
-### Best Policy:
-![alt text](output/finalout.png)
+<img width="625" height="706" alt="image" src="https://github.com/user-attachments/assets/4fdbe1f4-519d-4a35-a43d-5059f5c60b7b" />
+
+# Policy Evaluation of Policies
+
+<img width="544" height="431" alt="image" src="https://github.com/user-attachments/assets/b1452a23-a551-43dd-a3ef-a5d82a896edf" />
+
+# Comparing Policies
+
+<img width="709" height="422" alt="image" src="https://github.com/user-attachments/assets/4472e53b-4b00-4735-bbde-747ade590783" />
 
 ## RESULT:
-Thus, The Python program to evaluate the given policy is successfully executed.
+Therefore, policies are compared successfully using policy evaluation function in Frozen-Lake MDP.
