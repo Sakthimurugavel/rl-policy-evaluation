@@ -29,7 +29,7 @@ def policy_evaluation(pi, P, gamma=1.0, theta=1e-10):
 
 # Policy 2
 
-<img width="625" height="706" alt="image" src="https://github.com/user-attachments/assets/4fdbe1f4-519d-4a35-a43d-5059f5c60b7b" />
+<img width="746" height="629" alt="Screenshot 2025-09-15 210902" src="https://github.com/user-attachments/assets/89c954f8-5d9f-4874-b6fe-957f5cce110b" />
 
 # Policy Evaluation of Policies
 
